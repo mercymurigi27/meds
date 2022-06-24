@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container" style="background-image: url(static/image/b.jpg);">
+    
+    <div class="row">
+        {% for record in all_records %}
+        <div class="col-md-4">
+            <div class="card mb-4" style="min-height:340px">
+                <div class="card-title">
+                    <h4>{{record.name}}</h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ record.allergies }}  ({{record.Hospital}}) </h5>
+                    <p class="card-text">{{record.date}}</p>
+                    <p><span>{{record.medication}}</span> </p>
+            
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'profile' %}" class="btn btn-sm btn-info mb-2"> Add New Record</a>
+</div>
+{% endblock %}

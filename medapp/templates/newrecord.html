@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container" style="margin-top:-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h5 class="card-title tt">{{ record.name }} ({{record.allergies}})
+                            </h5>
+                            <h6 class="card-text">
+                            {{record.medication}}
+                            </h6>
+                            <p class="card-text">{{record.hospital}}</p>
+                           
+                            <p class="card-text">Administrator: <small class="text-muted">
+                                {{ record.admin.user.username }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container bg-white hoode">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="" class="btn btn-sm btn-outline-info mb-4 mr-4" data-toggle="modal" data-target="#ModalCenter">Add
+                    Family</a>
+         
+            
+                    {% for family in family_record%}
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <h5 class="card-title">{{family.name}}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-text">" {{family.relation}} "
+                            </h5>
+                            <p class="card-text">{{family.emergencies}}</p>
+                            <p class="card-text">Owner: <small class="text-muted">
+                                {{family.user.user.username|title }}</small></p>
+                          
+                          <a href="{% url 'index' %}" class="btn btn-primary">MedApp</a>
+                        </div>
+                      </div>
+                    
+                    {% endfor %}
+                </div>
+        
+                <hr>
+                <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">New family </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="" method="post">
+                                    {% csrf_token%}
+                                    {{form|crispy}}
+                                    <button type="submit" class="btn btn-sm btn-success">Save </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger " data-dismiss="modal">
+                                        Close
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}
+

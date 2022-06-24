@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 mx-auto center" style="min-height: 90vh;font-size: 48px;margin-top: 80px;color: rgb(227, 248, 35);">
+                    <div class="text-center p-4 backdrop">
+                        <h4 class="h3  fw-bolder">Welcome to Medapp records</h4>
+                        <h4 class="">This is a web application that allows each family to have centralised medical records history incase of emergencies</h4>
+                        <a href="{% url 'record' %}" class="btn btn-outline-light mt-3 fw-bold">Lets get started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

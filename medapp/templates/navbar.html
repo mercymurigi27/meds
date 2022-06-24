@@ -1,0 +1,73 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="height: 10pc; background-color: rgb(115, 161, 247);"> 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <!-- <h2 class="text-white mt-3 fw-bold">My<span class="color">Hood</span></h2> -->
+                <h3><a href="{% url 'index' %}" style="color: rgb(241, 236, 228);"><span>MedApp Records</span></a></h3>
+
+            </div>
+        
+        </div>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+            <ul class="nav navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item active" ">
+                     <img class="rounded-circle nav-img"src="{{ user.profile.profile_picture.url }}" alt="">
+                    &nbsp; <span class="text-white">{{user.username|title}}</span>
+                </li>
+
+                <ul class="list-unstyled components mr-2 ml-2" >
+                    <li class="mb-4">
+                        <a href="{% url 'profile' user.username %}">
+                            <img class="rounded-circle nav-img"src="{{ user.profile.profile_picture.url }}" alt="">
+                            &nbsp; Profile
+                        </a>
+            
+                    </li>
+                    <li class="mb-4 ">
+                        <a href="{% url 'edit-profile' user.username %}">
+                            <i class="fas fa-edit"></i>&nbsp;
+                            &nbsp; Edit Profile
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="{% url 'record' %}">
+                            <i class="fas fa-home"></i>&nbsp;
+                            &nbsp;  click to view records
+                        </a>
+                    </li>
+            
+                    {% if user.profile.Records %}
+                    <li class="mb-4">
+                        <a href="{% url 'single-record' user.profile.Records.id %}">
+                            <i class="fas fa-paper-plane"></i>&nbsp;
+                            &nbsp;{{user.profile.Records.name}}
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="mb-4">
+                        <a href=""> &nbsp;
+                            no records yet
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <div class="logout ml-2 mr-2 ">
+                    <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-danger d-block mx-auto"> Logout</a>
+                </div>
+                
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

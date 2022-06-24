@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<div class="container" style="max-width:100vw">
+    <div class="row">
+        <div class="col-md-3 mt-6" ></div>
+        <div class="col-md-6">
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                {{ form|crispy }}
+                
+                <button class="btn btn-sm btn-info">Login</button>
+            </form>
+        </div>
+    
+    </div>
+</div>
+{% endblock %}  
